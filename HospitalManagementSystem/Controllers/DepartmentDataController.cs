@@ -152,7 +152,6 @@ namespace HospitalManagementSystem.Controllers
         // POST: api/DepartmentData/UpdateDepartment/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateDepartment(int id, Department department)
         {
             if (!ModelState.IsValid)
@@ -189,7 +188,6 @@ namespace HospitalManagementSystem.Controllers
         // POST: api/DepartmentData/AddDepartment
         [ResponseType(typeof(Department))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddDepartment(Department department)
         {
             if (!ModelState.IsValid)
@@ -206,7 +204,6 @@ namespace HospitalManagementSystem.Controllers
         // DELETE: api/DepartmentData/DeleteDepartment/5
         [ResponseType(typeof(Department))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteDepartment(int id)
         {
             Department department = db.Departments.Find(id);

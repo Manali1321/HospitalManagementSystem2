@@ -1,19 +1,38 @@
-﻿@model HospitalManagementSystem.Models.Department
+﻿@model HospitalManagementSystem.Models.ViewModels.UpdateDepartment
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Update Department</h2>
 
 
-<form action="/Department/Update/@Model.DepartmentId" method="POST">
-    <div>
+<form action="/Department/Update/@Model.SelectedDepartment.DepartmentId" method="POST">
+    <div style="display:none;">
+        @* Pass through the department Id*@
         <label>DepartmentId:</label>
-        <input type="number" name="DepartmentId" value="@Model.DepartmentId" />
+        <input type="number" name="DepartmentId" value="@Model.SelectedDepartment.DepartmentId" />
     </div>
     <div>
         <label>Department Name:</label>
-        <input type="text" name="DepartmentName" value="@Model.DepartmentName" />
+        <input type="text" name="DepartmentName" value="@Model.SelectedDepartment.DepartmentName" />
+    </div>
+
+    <div>
+        <label>Location Id:</label>
+
+        <select name="LocationId">
+            @foreach (var location in Model.LocationOptions)
+            {
+                string selected = "";
+                if (location.LocationId == Model.SelectedDepartment.DepartmentId)
+                {
+                    selected = "selected";
+                }
+                <option value="@location.LocationId" @selected>@location.LocationName</option>
+
+            }
+        </select>
     </div>
     <div>
         <input type="submit" name="Update Department" />

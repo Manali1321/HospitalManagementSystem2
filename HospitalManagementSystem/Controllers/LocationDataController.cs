@@ -225,7 +225,6 @@ namespace HospitalManagementSystem.Controllers
         // POST: api/LocationData/UpdateLocation/5
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult UpdateLocation(int id, Location location)
         {
             if (!ModelState.IsValid)
@@ -262,7 +261,6 @@ namespace HospitalManagementSystem.Controllers
         // POST: api/LocationData/AddLocation
         [ResponseType(typeof(Location))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddLocation(Location location)
         {
             if (!ModelState.IsValid)
@@ -279,7 +277,6 @@ namespace HospitalManagementSystem.Controllers
         // POST: api/LocationData/DeleteLocation/5
         [ResponseType(typeof(Location))]
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteLocation(int id)
         {
             Location location = db.Locations.Find(id);

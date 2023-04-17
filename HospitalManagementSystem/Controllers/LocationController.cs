@@ -118,19 +118,19 @@ namespace HospitalManagementSystem.Controllers
             ViewModel.AvailableDepartments = AvailableDepartments;
 
             //show associated careers with this location
-            url = "careerdata/listcareersforlocation/"+id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<Career> RelatedCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
+            //url = "careerdata/listcareersforlocation/"+id;
+            //response = client.GetAsync(url).Result;
+            //IEnumerable<Career> RelatedCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
 
-            ViewModel.RelatedCareers = RelatedCareers;
+            //ViewModel.RelatedCareers = RelatedCareers;
 
 
             //show unassociated careers with this location
-            url = "careerdata/listcareersnotatthislocation/"+id;
-            response = client.GetAsync(url).Result;
-            IEnumerable<Career> AvailableCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
+           // url = "careerdata/listcareersnotatthislocation/"+id;
+            //response = client.GetAsync(url).Result;
+            //IEnumerable<Career> AvailableCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
 
-            ViewModel.AvailableCareers = AvailableCareers;
+            //ViewModel.AvailableCareers = AvailableCareers;
 
 
             //show associated locations with this department
@@ -234,7 +234,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Location/Create
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create(Location location)
         {
             Debug.WriteLine("the json payload is:");
@@ -278,7 +277,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Location/Edit/5
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Location location)
         {
             string url = "locationdata/updatelocation/"+id;
@@ -309,7 +307,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Location/Delete/5
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             string url = "locationdata/deletelocation/"+id;

@@ -112,11 +112,11 @@ namespace HospitalManagementSystem.Controllers
 
 
             //show associated careers with this department
-            url = "careerdata/listcareersfordepartment/"+id;
+            /*url = "careerdata/listcareersfordepartment/"+id;
             response = client.GetAsync(url).Result;
             IEnumerable<Career> RelatedCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
 
-            ViewModel.RelatedCareers = RelatedCareers;
+            ViewModel.RelatedCareers = RelatedCareers;*/
 
             // url = "locationdata/listoflocationsnothavingthisdepartment/" + id;
             // response = client.GetAsync(url).Result;
@@ -183,7 +183,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Department/Create
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Create(Department department)
         {
             Debug.WriteLine("the json payload is:");
@@ -237,7 +236,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Department/Edit/5
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Department department)
         {
 
@@ -269,7 +267,6 @@ namespace HospitalManagementSystem.Controllers
 
         // POST: Department/Delete/5
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id, Department department)
         {
             string url = "departmentdata/deletedepartment/"+id;

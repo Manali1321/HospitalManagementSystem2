@@ -41,11 +41,3 @@
     </div>
 </div>
 
-<div style="margin-top:100px;">
-    <h3>Careers related to this Department</h3>
-    @foreach (var career in Model.RelatedCareers)
-    {
-        <a href="/Career/Details/@career.CareerId">@career.JobName</a>
-
-    }
-</div>
