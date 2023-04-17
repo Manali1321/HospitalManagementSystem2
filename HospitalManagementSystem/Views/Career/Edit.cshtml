@@ -1,0 +1,43 @@
+﻿
+
+@model HospitalManagementSystem.Models.CareerDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<form action="/Career/Update/@Model.CareerId" method="POST">
+    <div>
+        <label>CareerId:</label>
+        <input type="number" name="CareerId" value="@Model.CareerId" />
+    </div>
+    <div>
+        <label>Job Name:</label>
+        <input type="text" name="JobName" value="@Model.JobName" />
+
+    </div>
+    <div>
+        <label>Job Id:</label>
+        <input type="number" name="JobId" value="@Model.JobId" />
+
+    </div>
+    <div>
+        <label>Job Description:</label>
+        <input type="text" name="JobDescription" value="@Model.JobDescription" />
+
+    </div>
+    <div>
+        <label>Department Name:</label>
+        <input type="text" name="DepartmentName" value="@Model.DepartmentName" />
+    </div>
+    <div>
+        <label>Location Name:</label>
+        <input type="text" name="LocationName" value="@Model.LocationName" />
+    </div>
+    <div>
+        <input type="submit" name="Update Career" />
+    </div>
+
+</form>

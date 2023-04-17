@@ -1,0 +1,82 @@
+﻿@model HospitalManagementSystem.Models.ViewModels.LocationDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Show Location</h2>
+
+
+<a href="/Location/List">Go back to list</a>
+
+<br />
+<div>Name: @Model.SelectedLocation.LocationName</div>
+<div>Address: @Model.SelectedLocation.LocationAddress</div>
+<div>Contact Number: @Model.SelectedLocation.LocationContactNo</div>
+
+<br />
+
+<a href="/Location/Edit/@Model.SelectedLocation.LocationId">UPDATE</a>
+
+<br />
+
+<a href="/Location/DeleteConfirm/@Model.SelectedLocation.LocationId">DELETE</a>
+
+<div style="margin-top:100px;">
+    <h3>Departments related to this Location</h3>
+    @foreach (var department in Model.RelatedDepartments)
+    {
+        <a href="/Department/Details/@department.DepartmentId">@department.DepartmentName</a>
+        <a style="color:#ab2020;" href="/Location/Unassociate/@Model.SelectedLocation.LocationId?DepartmentId=@department.DepartmentId">[X]</a> <br />
+    }
+
+    <div>
+        <h4>Add new Department to @Model.SelectedLocation.LocationName</h4>
+        <form method="POST" action="/Location/Associate/@Model.SelectedLocation.LocationId">
+            <select name="DepartmentId">
+                @foreach (var department in Model.AvailableDepartments)
+                {
+                    <option value="@department.DepartmentId">@department.DepartmentName</option>
+                }
+
+            </select>
+            <input type="submit" value="Associate Department" />
+        </form>
+    </div>
+</div>
+
+<div style="margin-top:100px;">
+    <h3>Services related to this Location</h3>
+    @foreach (var service in Model.RelatedServices)
+    {
+        <a href="/Service/Details/@service.ServiceId">@service.ServiceName</a>
+        <a style="color:#ab2020;" href="/Location/UnassociateService/@Model.SelectedLocation.LocationId?ServiceId=@service.ServiceId">[X]</a> <br />
+        <br />
+    }
+
+
+    <div>
+        <h4>Add new Service to @Model.SelectedLocation.LocationName</h4>
+        <form method="POST" action="/Location/AssociateService/@Model.SelectedLocation.LocationId">
+            <select name="ServiceId">
+
+                @foreach (var service in Model.AvailableServices)
+                {
+                    <option value="@service.ServiceId">@service.ServiceName</option>
+                }
+            </select>
+            <input type="submit" value="AssociateService Service" />
+        </form>
+    </div>
+
+</div>
+
+<div style="margin-top:100px;">
+    <h3>Careers related to this Location</h3>
+    @foreach (var career in Model.RelatedCareers)
+    {
+        <a href="/Career/Details/@career.CareerId">@career.JobName</a>
+        <br />
+    }
+
+</div>
+

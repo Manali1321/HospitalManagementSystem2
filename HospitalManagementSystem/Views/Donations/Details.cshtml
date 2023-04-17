@@ -1,0 +1,17 @@
+﻿@model HospitalManagementSystem.Models.Donation
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of Donator</h2>
+<a href="/Donations/List">Go Back To List of Donor</a>
+<h2>Show Donator Details</h2>
+<h3>Donator First Name: @Model.firstName</h3>
+<h3>Donator Last Name: @Model.lastName</h3>
+<h3>Amount: @Model.amount$</h3>
+<h3>Date of Donation: @Model.date</h3>
+<br />
+<a href="/Donations/Edit/@Model.donationID">Update Donator</a>
+<br />
+<br />
+<a href="/Donations/DeleteConfirm/@Model.donationID">Delete donator</a>

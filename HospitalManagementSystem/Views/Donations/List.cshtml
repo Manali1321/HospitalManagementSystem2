@@ -1,0 +1,12 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Donation>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Donators</h2>
+<a href="/Donations/New">Add Donation</a>
+@foreach (var donation in Model)
+{
+    <h3><a href="/Donations/Details/@donation.donationID">@donation.firstName</a></h3>
+}
+

@@ -1,0 +1,21 @@
+﻿@model HospitalManagementSystem.Models.CareerDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Show Career</h2>
+
+
+<h3><a href="/Career/List">Go back to list</a></h3>
+
+<br />
+
+<div>Job Name: @Model.JobName</div>
+<div>Job Id: @Model.JobId</div>
+<div>Job Description: @Model.JobDescription</div>
+<div>Department Name: @Model.DepartmentName</div>
+<div>Location Name: @Model.LocationName</div>
+
+<br />
+
+<h3><a href="/Career/DeleteConfirm/@Model.CareerId">DELETE</a></h3>

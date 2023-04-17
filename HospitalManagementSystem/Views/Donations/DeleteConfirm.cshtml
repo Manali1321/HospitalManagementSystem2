@@ -1,0 +1,16 @@
+﻿@model HospitalManagementSystem.Models.Donation
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Donation?</h2>
+<a href="/Donations/List">Cancel</a>
+<h3>Donation ID: @Model.donationID</h3>
+<h4>First Name: @Model.firstName</h4>
+<h4>Last Name: @Model.lastName</h4>
+<h4>Amount: @Model.amount</h4>
+<h4>Date: @Model.date</h4>
+<form action="/Donations/Delete/@Model.donationID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

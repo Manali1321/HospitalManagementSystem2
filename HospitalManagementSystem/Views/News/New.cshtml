@@ -1,0 +1,19 @@
+﻿@model HospitalManagementSystem.Models.News
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add News</h2>
+<form action="/News/Create" method="POST">
+    <div>
+        <label>News Title: </label> <input name="newsTitle" />
+    </div>
+
+    <div>
+        <label>news Description: </label> <input name="newsDescription" />
+    </div>
+    <div>
+        <input type="submit" value="Add News" />
+    </div>
+</form>
+

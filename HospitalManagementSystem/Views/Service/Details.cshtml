@@ -1,0 +1,43 @@
+﻿
+
+@model HospitalManagementSystem.Models.ViewModels.ServiceDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Show Service</h2>
+
+
+<a href="/Service/List">Go back to list</a>
+
+<br />
+
+<a href="/Service/Edit/@Model.SelectedService.ServiceId">Update</a>
+<br />
+<a style="color:#ab2020;" href="/Service/DeleteConfirm/@Model.SelectedService.ServiceId">Delete</a>
+<br />
+
+<div>Name: @Model.SelectedService.ServiceName</div>
+
+<div>
+    <h3>Available at locations:</h3>
+    @foreach (var location in Model.AtLocations)
+    {
+        <a href="/Location/Details/@location.LocationId">@location.LocationName</a>
+        <a style="color:#ab2020;" href="/Service/UnassociateLocation/@Model.SelectedService.ServiceId?LocationId=@location.LocationId">[X]</a> <br />
+    }
+
+    <div>
+        <h4>Add new location to @Model.SelectedService.ServiceName</h4>
+        <form method="POST" action="/Service/AssociateLocation/@Model.SelectedService.ServiceId">
+            <select name="LocationId">
+                @foreach (var location in Model.AvailableLocations)
+                {
+                    <option value="@location.LocationId">@location.LocationName</option>
+                }
+
+            </select>
+            <input type="submit" value="AssociateLocation Location" />
+        </form>
+    </div>
+</div>

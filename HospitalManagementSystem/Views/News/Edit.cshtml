@@ -1,0 +1,29 @@
+﻿@model HospitalManagementSystem.Models.News
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update News</h2>
+
+<form action="/News/Update/@Model.newsID" method="POST">
+    <div>
+        <label>Id: </label>
+        <input type="text" name="newsID" value="@Model.newsID" />
+    </div>
+
+    <div>
+        <label>News Title: </label>
+        <input type="text" name="newsTitle" value="@Model.newsTitle" />
+    </div>
+
+    <div>
+        <label>News Description: </label>
+        <input type="text" name="newsDescription" value="@Model.newsDescription" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update News" />
+    </div>
+
+</form>
+

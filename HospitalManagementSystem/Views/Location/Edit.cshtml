@@ -1,0 +1,32 @@
+﻿@model HospitalManagementSystem.Models.Location
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<form action="/Location/Update/@Model.LocationId" method="POST">
+    <div>
+        <label>LocationId:</label>
+        <input type="number" name="LocationId" value="@Model.LocationId" />
+    </div>
+    <div>
+        <label>Location Name:</label>
+        <input type="text" name="LocationName" value="@Model.LocationName" />
+
+    </div>
+    <div>
+        <label>Location Address:</label>
+        <input type="text" name="LocationAddress" value="@Model.LocationAddress" />
+    </div>
+    <div>
+        <label>Location Contact Number:</label>
+        <input type="text" name="LocationContactNo" value="@Model.LocationContactNo" />
+    </div>
+    <div>
+        <input type="submit" name="Update Location" />
+    </div>
+
+</form>
+

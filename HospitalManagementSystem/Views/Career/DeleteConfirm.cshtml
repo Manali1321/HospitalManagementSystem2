@@ -1,0 +1,28 @@
+﻿
+
+@model HospitalManagementSystem.Models.CareerDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Delete</h2>
+
+<br />
+<h4>Are you sure you want to delete this career?</h4>
+<br />
+
+<a href="/Career/List">Cancel</a>
+
+
+<br />
+<div>Job Name: @Model.JobName</div>
+<div>Job Id: @Model.JobId</div>
+<div>Job Description: @Model.JobDescription</div>
+<div>Department Name: @Model.DepartmentName</div>
+<div>Location Name: @Model..LocationName</div>
+<br />
+
+<form action="/Career/Delete/@Model.CareerId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

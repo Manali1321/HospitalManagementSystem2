@@ -1,0 +1,12 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.News>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<a href="/News/New">Add News</a>
+@foreach (var news in Model)
+{
+    <h3><a href="/News/Details/@news.newsID">@news.newsTitle</a></h3>
+}

@@ -1,0 +1,51 @@
+﻿@model HospitalManagementSystem.Models.ViewModels.DepartmentDetails
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Show Department</h2>
+
+<br />
+
+<a href="/Department/List">Go back to list</a>
+<br />
+<a style="color:#ab2020;" href="/Department/DeleteConfirm/@Model.SelectedDepartment.DepartmentId">Delete</a>
+<br />
+<a href="/Department/Edit/@Model.SelectedDepartment.DepartmentId">Update</a>
+<br />
+
+<h4>Name: @Model.SelectedDepartment.DepartmentName Department</h4>
+
+
+<div>
+    <h2>Locations Having @Model.SelectedDepartment.DepartmentName Department</h2>
+    @foreach (var location in Model.RelatedLocations)
+    {
+
+        <a href="/Location/Details/@location.LocationId">@location.LocationName</a> <a style="color:#ab2020;" href="/Department/Unassociate/@Model.SelectedDepartment.DepartmentId?LocationId=@location.LocationId">[x]</a><br />
+    }
+
+    <div>
+        <h4>Add new Location to @Model.SelectedDepartment.DepartmentName</h4>
+        <form method="POST" action="/Department/Associate/@Model.SelectedDepartment.DepartmentId">
+            <select name="LocationId">
+                @foreach (var location in Model.AvailableLocations)
+                {
+                    <option value="@location.LocationId">@location.LocationName</option>
+                }
+
+            </select>
+            <input type="submit" value="Associate Location" />
+        </form>
+    </div>
+</div>
+
+<div style="margin-top:100px;">
+    <h3>Careers related to this Department</h3>
+    @foreach (var career in Model.RelatedCareers)
+    {
+        <a href="/Career/Details/@career.CareerId">@career.JobName</a>
+
+    }
+</div>

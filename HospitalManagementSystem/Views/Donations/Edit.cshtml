@@ -1,0 +1,38 @@
+﻿@model HospitalManagementSystem.Models.Donation
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Upate Donation</h2>
+<form action="/Donations/Update/@Model.donationID" method="POST">
+
+    <div>
+        <label>Donation ID: </label>
+        <input type="text" name="donationID" value="@Model.donationID"/>
+    </div>
+    <div>
+        <label>First Name: </label>
+        <input type="text" name="firstName" value="@Model.firstName" />
+    </div>
+
+    <div>
+        <label>Last Name: </label>
+        <input type="text" name="lastName" value="@Model.lastName" />
+    </div>
+
+    <div>
+        <label>Amount: </label>
+        <input type="text" name="amount" value="@Model.amount" />
+    </div>
+
+    <div>
+        <label>Date: </label>
+        <input type="text" name="date" value="@Model.date" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Donation" />
+    </div>
+</form>
+
+

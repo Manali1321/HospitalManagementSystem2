@@ -1,0 +1,32 @@
+﻿@model HospitalManagementSystem.Models.ViewModels.DepartmentList
+@{
+    ViewBag.Title = "List";
+}
+
+
+<h2>List</h2>
+
+<div style=" margin: 30px 0;">
+    <a style="border: 1px solid black; margin: 15px; padding: 15px; text-decoration: none; text-align: center; background-color: #47d147; color: black; " href="/Department/New">Add new department</a>
+</div>
+
+
+<div>
+    @if (Model.Departments.Count() > 0 && ViewData["PageNum"] !=null)
+    {
+        int PrevPage = Convert.ToInt32(ViewData["PageNum"]) - 1;
+        int NextPage = Convert.ToInt32(ViewData["PageNum"]) + 1;
+        @Html.ActionLink("Prev", "List", new { PageNum = PrevPage })
+        @ViewData["PageSummary"]
+        @Html.ActionLink("Next", "List", new { PageNum = NextPage })
+    }
+</div>
+
+
+@foreach (var department in Model.Departments)
+{
+
+    <h2><a href="/Department/Details/@department.DepartmentId">@department.DepartmentName</a></h2>
+
+}
+

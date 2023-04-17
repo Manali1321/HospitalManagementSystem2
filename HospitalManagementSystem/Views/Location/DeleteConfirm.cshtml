@@ -1,0 +1,22 @@
+﻿@model HospitalManagementSystem.Models.Location
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Delete</h2>
+
+<h4>Are you sure you want to delete this location?</h4>
+
+<a href="/Location/List">Cancel</a>
+
+
+<div>@Model.LocationName </div>
+<div>Address:@Model.LocationAddress</div>
+<div>ContactNo:@Model.LocationContactNo</div>
+
+
+<form action="/Location/Delete/@Model.LocationId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
+

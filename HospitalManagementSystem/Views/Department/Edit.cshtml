@@ -1,0 +1,23 @@
+﻿@model HospitalManagementSystem.Models.Department
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<form action="/Department/Update/@Model.DepartmentId" method="POST">
+    <div>
+        <label>DepartmentId:</label>
+        <input type="number" name="DepartmentId" value="@Model.DepartmentId" />
+    </div>
+    <div>
+        <label>Department Name:</label>
+        <input type="text" name="DepartmentName" value="@Model.DepartmentName" />
+    </div>
+    <div>
+        <input type="submit" name="Update Department" />
+    </div>
+
+</form>
+

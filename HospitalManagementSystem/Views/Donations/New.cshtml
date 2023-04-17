@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Donator</h2>
+<form action="/Donations/Create" method="POST">
+    <div>
+        <label>Donor First Name: </label> <input name="firstName" />
+    </div>
+
+    <div>
+        <label>Donor Last Name: </label> <input name="lastName" />
+    </div>
+
+    <div>
+        <label>Amount: </label> <input name="amount" />
+    </div>
+
+    <div>
+        <label>Date of Donation: </label> <input name="date" />
+    </div>
+
+    <div>
+        <input type="submit" value="Add donation" />
+    </div>
+</form>

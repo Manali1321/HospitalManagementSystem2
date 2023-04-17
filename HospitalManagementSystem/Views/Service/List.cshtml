@@ -1,0 +1,30 @@
+﻿
+@model HospitalManagementSystem.Models.ViewModels.ServiceList
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<div style=" margin: 30px 0;">
+    <a style="border: 1px solid black; margin: 15px; padding: 15px; text-decoration: none; text-align: center; background-color: #47d147; color: black; " href="/Service/New">Add Service</a>
+</div>
+
+
+<div>
+    @if (Model.Services.Count() > 0 && ViewData["PageNum"] !=null)
+    {
+        int PrevPage = Convert.ToInt32(ViewData["PageNum"]) - 1;
+        int NextPage = Convert.ToInt32(ViewData["PageNum"]) + 1;
+        @Html.ActionLink("Prev", "List", new { PageNum = PrevPage })
+        @ViewData["PageSummary"]
+        @Html.ActionLink("Next", "List", new { PageNum = NextPage })
+    }
+</div>
+
+@foreach (var service in Model.Services)
+{
+
+    <h2><a href="/Service/Details/@service.ServiceId">@service.ServiceName</a></h2>
+
+}
