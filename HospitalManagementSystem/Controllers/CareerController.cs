@@ -8,8 +8,10 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-
-
+using System.IO;
+using System.Xml.Serialization;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace HospitalManagementSystem.Controllers
 {
@@ -78,25 +80,26 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // GET: Career/New
-        public ActionResult New()
+        public async Task<ActionResult> New()
         {
-            string url = "departmentdata/listdepartments";
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            IEnumerable<DepartmentDto> DepartmentOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+            string url = "https://localhost:44316/api/departmentdata/listdepartments";
+            HttpResponseMessage response = await client.GetAsync(url);
+            string json = await response.Content.ReadAsStringAsync();
+            IEnumerable<DepartmentDto> DepartmentOptions = JsonConvert.DeserializeObject<IEnumerable<DepartmentDto>>(json);
 
-
-            string url1 = "locationdata/listlocations";
-            HttpResponseMessage response1 = client.GetAsync(url1).Result;
-            IEnumerable<LocationDto> LocationOptions = response1.Content.ReadAsAsync<IEnumerable<LocationDto>>().Result;
-
+            string url1 = "https://localhost:44316/api/locationdata/listlocations";
+            HttpResponseMessage response1 = await client.GetAsync(url1);
+            string jsonn = await response1.Content.ReadAsStringAsync();
+            IEnumerable<LocationDto> LocationOptions = JsonConvert.DeserializeObject<IEnumerable<LocationDto>>(jsonn);
 
             var viewModel = new AddCareers
             {
-                DepartmentOptions = DepartmentOptions,
-                LocationOptions = LocationOptions
+                DepartmentOptions = DepartmentOptions.ToList(),
+                LocationOptions = LocationOptions.ToList()
             };
             return View(viewModel);
         }
+
 
         // POST: Career/Create
         [HttpPost]
