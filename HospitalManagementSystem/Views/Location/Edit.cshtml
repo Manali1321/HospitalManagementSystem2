@@ -8,8 +8,11 @@
 
 <form action="/Location/Update/@Model.LocationId" method="POST">
     <div>
-        <label>LocationId:</label>
-        <input type="number" name="LocationId" value="@Model.LocationId" />
+       LocationId:@Model.LocationId
+    </div>
+    <div>
+        <input type="hidden" name="locationid" value="@Model.LocationId" />
+
     </div>
     <div>
         <label>Location Name:</label>

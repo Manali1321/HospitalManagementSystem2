@@ -10,10 +10,12 @@
 
 <form action="/Service/Update/@Model.ServiceId" method="POST">
     <div>
-        <label>ServiceId:</label>
-        <input type="number" name="ServiceId" value="@Model.ServiceId" />
+        ServiceId:@Model.ServiceId
     </div>
+    <div>
+        <input type="hidden" name="serviceid" value="@Model.ServiceId" />
 
+    </div>
     <div>
         <label>Service Name:</label>
         <input type="text" name="ServiceName" value="@Model.ServiceName" />
