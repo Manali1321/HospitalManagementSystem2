@@ -26,14 +26,14 @@ namespace HospitalManagementSystem.Controllers
         }
 
         /// <summary>
-        /// Returns all animals in the system.
+        /// Returns all service. on one page it will be 4 list of service
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-        /// CONTENT: all animals in the database, including their associated species.
+        /// CONTENT: all list of services. one page it will contain 4 list of service and automatic another page will be added when contain increase.
         /// </returns>
         /// <example>
-        /// GET: api/AnimalData/ListAnimals
+        /// GET: api/ServiceData/ListServices
         /// </example>
         [HttpGet]
         [ResponseType(typeof(Service))]
@@ -45,6 +45,19 @@ namespace HospitalManagementSystem.Controllers
             return Ok(Services);
         }
 
+        /// <summary>
+        /// Returns all detail Services in the system when match the param Serviceid.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An Service in the system matching up to the Service ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the Service</param>
+        /// <example>
+        /// GET: api/ServiceData/FindService/5
+        /// </example>
         // GET: api/ServiceData/FindService/5
         [ResponseType(typeof(Service))]
         [HttpGet]
@@ -58,7 +71,17 @@ namespace HospitalManagementSystem.Controllers
 
             return Ok(service);
         }
-
+        /// <summary>
+        /// Gathers information about Services related to a particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Services in the database, including their associated location that match to a particular location id
+        /// </returns>
+        /// <param name="id">location ID.</param>
+        /// <example>
+        /// GET: api/ServiceData/ListServicesForLocation/1
+        /// </example>
         [HttpGet]
         [ResponseType(typeof(Service))]
         public IHttpActionResult ListServicesForLocation(int id)
@@ -69,7 +92,17 @@ namespace HospitalManagementSystem.Controllers
                 ).ToList();
             return Ok(Services);
         }
-
+        /// <summary>
+        /// Gathers information about Services is not related to a particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Services in the database, including their is not at location that match to a particular location id
+        /// </returns>
+        /// <param name="id">Location ID.</param>
+        /// <example>
+        /// GET: api/LocationData/ListOfServicesNotAtThisLocation/1
+        /// </example>
         [HttpGet]
         [ResponseType(typeof(Service))]
         public IHttpActionResult ListOfServicesNotAtThisLocation(int id)
@@ -82,7 +115,19 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-
+        /// <summary>
+        /// Associates a particular Location with a particular Service
+        /// </summary>
+        /// <param name="Serviceid">The Service ID primary key</param>
+        /// <param name="Location">The Location ID primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/ServiceData/AssociateLocationWithService/9/1
+        /// </example>
         [HttpPost]
         [Route("api/ServiceData/AssociateLocationWithService/{serviceid}/{locationid}")]
         public IHttpActionResult AssociateLocationWithService(int serviceid, int locationid)
@@ -96,10 +141,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input service id is: " + serviceid);
-            Debug.WriteLine("selected service name is: " + SelectedService.ServiceName);
-            Debug.WriteLine("input location id is: " + locationid);
-            Debug.WriteLine("selected location name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input service id is: " + serviceid);
+            //Debug.WriteLine("selected service name is: " + SelectedService.ServiceName);
+            //Debug.WriteLine("input location id is: " + locationid);
+            //Debug.WriteLine("selected location name is: " + SelectedLocation.LocationName);
 
             SelectedService.Locations.Add(SelectedLocation);
             db.SaveChanges();
@@ -107,7 +152,19 @@ namespace HospitalManagementSystem.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Removes an association between a particular location and a particular Service
+        /// </summary>
+        /// <param name="Serviceid">The Service ID primary key</param>
+        /// <param name="Locationid">The Location ID primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/ServiceData/AssociateServiceWithLocation/9/1
+        /// </example>
         [HttpPost]
         [Route("api/ServiceData/UnAssociateLocationWithService/{serviceid}/{locationid}")]
         public IHttpActionResult UnAssociateLocationWithService(int serviceid, int locationid)
@@ -121,10 +178,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input service id is: " + serviceid);
-            Debug.WriteLine("selected service name is: " + SelectedService.ServiceName);
-            Debug.WriteLine("input location id is: " + locationid);
-            Debug.WriteLine("selected location name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input service id is: " + serviceid);
+            //Debug.WriteLine("selected service name is: " + SelectedService.ServiceName);
+            //Debug.WriteLine("input location id is: " + locationid);
+            //Debug.WriteLine("selected location name is: " + SelectedLocation.LocationName);
 
 
             SelectedService.Locations.Remove(SelectedLocation);
@@ -133,8 +190,22 @@ namespace HospitalManagementSystem.Controllers
             return Ok();
         }
 
-
-        // POST: api/ServiceData/UpdateService/5
+        /// <summary>
+        /// Updates a particular Service in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the Service ID primary key</param>
+        /// <param name="Service">JSON FORM DATA of an Service</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// POST: api/ServiceData/UpdateService/5
+        /// FORM DATA: Service JSON Object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
 
@@ -170,8 +241,20 @@ namespace HospitalManagementSystem.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/ServiceData/AddService
+        /// <summary>
+        /// Adds an Service to the system
+        /// </summary>
+        /// <param name="Service">JSON FORM DATA of an Service</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Service ID, Service Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// POST: api/ServiceData/AddService
+        /// FORM DATA: Service JSON Object
+        /// </example>
         [ResponseType(typeof(Service))]
         [HttpPost]
 
@@ -188,7 +271,19 @@ namespace HospitalManagementSystem.Controllers
             return CreatedAtRoute("DefaultApi", new { id = service.ServiceId }, service);
         }
 
-        // POST: api/ServiceData/DeleteService/5
+        /// <summary>
+        /// Deletes an Service from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the Service</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/ServiceData/DeleteService/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Service))]
         [HttpPost]
 

@@ -17,7 +17,17 @@ namespace HospitalManagementSystem.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/CareerData/ListCareers
+
+        /// <summary>
+        /// Returns all list in the Careers.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all career in the database, including their associated department and location.
+        /// </returns>
+        /// <example>
+        /// GET: api/CareerData/ListCareers
+        /// </example>
         [HttpGet]
         public IEnumerable<CareerDto> ListCareers()
         {
@@ -39,8 +49,19 @@ namespace HospitalManagementSystem.Controllers
             return CareerDtos;
         }
 
-
-        // GET: api/CareerData/FindCareer/5
+        /// <summary>
+        /// Returns all values from career table
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An career in the system matching up to the career ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the career</param>
+        /// <example>
+        /// GET: api/CareerData/FindCareer/5
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpGet]
         public IHttpActionResult FindCareer(int id)
@@ -63,8 +84,22 @@ namespace HospitalManagementSystem.Controllers
 
             return Ok(CareerDto);
         }
-
-        // POST: api/CareerData/UpdateCareer/5
+        /// <summary>
+        /// Updates a particular career in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the career ID primary key</param>
+        /// <param name="career">JSON FORM DATA of an career</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        /// FORM DATA: Career JSON Object
+        /// POST: api/CareerData/UpdateCareer/5
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCareer(int id, Career career)
@@ -100,7 +135,20 @@ namespace HospitalManagementSystem.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CareerData/AddCareer
+        /// <summary>
+        /// Adds an career to the system
+        /// </summary>
+        /// <param name="career">JSON FORM DATA of an career</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Career ID, Career Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        /// FORM DATA: Animal JSON Object
+        /// POST: api/CareerData/AddCareer
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpPost]
         public IHttpActionResult AddCareer(Career career)
@@ -116,7 +164,19 @@ namespace HospitalManagementSystem.Controllers
             return CreatedAtRoute("DefaultApi", new { id = career.CareerId }, career);
         }
 
-        // POST: api/CareerData/DeleteCareer/5
+        /// <summary>
+        /// Deletes an career from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the career</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST: api/CareerData/DeleteCareer/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Career))]
         [HttpPost]
         public IHttpActionResult DeleteCareer(int id)

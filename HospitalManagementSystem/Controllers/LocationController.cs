@@ -117,21 +117,6 @@ namespace HospitalManagementSystem.Controllers
 
             ViewModel.AvailableDepartments = AvailableDepartments;
 
-            //show associated careers with this location
-            //url = "careerdata/listcareersforlocation/"+id;
-            //response = client.GetAsync(url).Result;
-            //IEnumerable<Career> RelatedCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
-
-            //ViewModel.RelatedCareers = RelatedCareers;
-
-
-            //show unassociated careers with this location
-           // url = "careerdata/listcareersnotatthislocation/"+id;
-            //response = client.GetAsync(url).Result;
-            //IEnumerable<Career> AvailableCareers = response.Content.ReadAsAsync<IEnumerable<Career>>().Result;
-
-            //ViewModel.AvailableCareers = AvailableCareers;
-
 
             //show associated locations with this department
             url = "servicedata/listservicesforlocation/"+id;

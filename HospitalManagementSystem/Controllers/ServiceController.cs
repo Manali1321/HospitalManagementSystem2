@@ -38,8 +38,8 @@ namespace HospitalManagementSystem.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
 
 
-            Debug.WriteLine("the response code is: ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("the response code is: ");
+            //Debug.WriteLine(response.StatusCode);
 
             IEnumerable<Service> services = response.Content.ReadAsAsync<IEnumerable<Service>>().Result;
 
@@ -172,7 +172,7 @@ namespace HospitalManagementSystem.Controllers
 
         public ActionResult Create(Service service)
         {
-            Debug.WriteLine("the json payload is:");
+            //Debug.WriteLine("the json payload is:");
             // Debug.WriteLine(Service.ServiceName);
             //objective: add a new Service into our system using the API
 
@@ -182,7 +182,7 @@ namespace HospitalManagementSystem.Controllers
 
             string jsonpayload = jss.Serialize(service);
 
-            Debug.WriteLine(jsonpayload);
+            //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType= "application/json";
@@ -219,7 +219,7 @@ namespace HospitalManagementSystem.Controllers
 
             string url = "servicedata/updateservice/"+id;
             string jsonpayload = jss.Serialize(service);
-            Debug.WriteLine(jsonpayload);
+            //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

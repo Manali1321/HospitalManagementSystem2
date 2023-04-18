@@ -36,10 +36,8 @@ namespace HospitalManagementSystem.Controllers
 
             string url = "listcareers";
             HttpResponseMessage response = client.GetAsync(url).Result;
-
-
-            Debug.WriteLine("the response code is: ");
-            Debug.WriteLine(response.StatusCode);
+            //Debug.WriteLine("the response code is: ");
+            //Debug.WriteLine(response.StatusCode);
 
             IEnumerable<CareerDto> careers = response.Content.ReadAsAsync<IEnumerable<CareerDto>>().Result;
 
@@ -59,13 +57,10 @@ namespace HospitalManagementSystem.Controllers
 
             string url = "findcareer/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-
-
             //Debug.WriteLine("the response code is: ");
             // Debug.WriteLine(response.StatusCode);
 
             CareerDto SelectedCareer = response.Content.ReadAsAsync<CareerDto>().Result;
-
             //Debug.WriteLine(" Career recieved:");
             // Debug.WriteLine(SelectedCareer.CareerName);
 
@@ -82,6 +77,8 @@ namespace HospitalManagementSystem.Controllers
         // GET: Career/New
         public async Task<ActionResult> New()
         {
+            //We are trying to without json convert it keep give us error data is not in json array
+            //Fetch the value of list of departments from department table and convert to json Data
             string url = "https://localhost:44316/api/departmentdata/listdepartments";
             HttpResponseMessage response = await client.GetAsync(url);
             string json = await response.Content.ReadAsStringAsync();
@@ -92,6 +89,7 @@ namespace HospitalManagementSystem.Controllers
             string jsonn = await response1.Content.ReadAsStringAsync();
             IEnumerable<LocationDto> LocationOptions = JsonConvert.DeserializeObject<IEnumerable<LocationDto>>(jsonn);
 
+            //departmentoption and locationoptions pass to AddCareers viewmodel
             var viewModel = new AddCareers
             {
                 DepartmentOptions = DepartmentOptions.ToList(),
@@ -112,10 +110,8 @@ namespace HospitalManagementSystem.Controllers
             //curl -H "Content-Type:appliation/json" -d career.json https://localhost:44316/api/careerdata/addcareer
             string url = "addcareer";
 
-
             string jsonpayload = jss.Serialize(career);
-
-            Debug.WriteLine(jsonpayload);
+            //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType= "application/json";
@@ -142,6 +138,7 @@ namespace HospitalManagementSystem.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             CareerDto SelectedCareer = response.Content.ReadAsAsync<CareerDto>().Result;
 
+            //same as create fetch value from department list to show available all option
             string url2 = "https://localhost:44316/api/departmentdata/listdepartments";
             response = client.GetAsync(url2).Result;
             IEnumerable<DepartmentDto> DepartmentOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
@@ -150,8 +147,7 @@ namespace HospitalManagementSystem.Controllers
             response = client.GetAsync(url1).Result;
             IEnumerable<LocationDto> LocationOptions = response.Content.ReadAsAsync<IEnumerable<LocationDto>>().Result;
 
-
-
+            //pass all the values in to viewmodel
             ViewModel.SelectedCareer = SelectedCareer;
             ViewModel.DepartmentOptions = DepartmentOptions;
             ViewModel.LocationOptions = LocationOptions;
@@ -164,10 +160,10 @@ namespace HospitalManagementSystem.Controllers
         [HttpPost]
         public ActionResult Update(int id, Career career)
         {
-
+            //Take value from user input and change to database use of POST method
             string url = "updatecareer/"+id;
             string jsonpayload = jss.Serialize(career);
-            Debug.WriteLine(jsonpayload);
+            //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -185,6 +181,7 @@ namespace HospitalManagementSystem.Controllers
         // GET: Career/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
+            //Delete user selected value from the 
             string url = "findcareer/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CareerDto SelectedCareer = response.Content.ReadAsAsync<CareerDto>().Result;

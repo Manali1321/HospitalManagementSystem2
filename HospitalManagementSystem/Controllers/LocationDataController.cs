@@ -18,7 +18,16 @@ namespace HospitalManagementSystem.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        /// <summary>
+        /// Returns all locations in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all location in the database.
+        /// </returns>
+        /// <example>
         // GET: api/LocationData/ListLocations
+        /// </example>
         [HttpGet]
         public IQueryable<Location> ListLocations()
         {
@@ -26,14 +35,15 @@ namespace HospitalManagementSystem.Controllers
         }
 
         /// <summary>
-        /// Returns all locations in the system.
+        /// Gathers information about all location. pagination. One page can have 4 location list
         /// </summary>
         /// <returns>
         /// HEADER: 200 (OK)
-        /// CONTENT: all animals in the database, including their associated species.
         /// </returns>
+        /// <param name="StartIndex">id</param>
+        /// <param name="PerPage">4</param>
         /// <example>
-        /// GET: api/AnimalData/ListAnimals
+        /// GET: api/LocationData/ListLocationsPage/3/4
         /// </example>
         [HttpGet]
         [ResponseType(typeof(Location))]
@@ -44,7 +54,17 @@ namespace HospitalManagementSystem.Controllers
             return Ok(Locations);
         }
 
+
+        /// <summary>
+        /// Gathers information about all department which connected with locationID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="id">locationid</param>
+        /// <example>
         // GET: api/LocationData/ListLocationsForDepartment
+        /// </example>
         [HttpGet]
         public IHttpActionResult ListLocationsForDepartment(int id)
         {
@@ -58,7 +78,16 @@ namespace HospitalManagementSystem.Controllers
 
         }
 
+        /// <summary>
+        /// Gathers information about all department which is not connected with locationID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="id">LocationId</param>
+        /// <example>
         // GET: api/LocationData/ListLocationsNotHavingThisDepartment
+        /// </example>
         [HttpGet]
         public IHttpActionResult ListLocationsNotHavingThisDepartment(int id)
         {
@@ -70,8 +99,17 @@ namespace HospitalManagementSystem.Controllers
             return Ok(Locations);
 
         }
-
-        // GET: api/LocationData/ListLocationsForService
+        /// <summary>
+        /// Gathers information about all location related to a particular service ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all location in the database, including their associated species matched with a particular service ID
+        /// </returns>
+        /// <param name="id">Service ID.</param>
+        /// <example>
+        // GET: api/LocationData/ListLocationsForService/3
+        /// </example>
         [HttpGet]
         public IHttpActionResult ListLocationsForService(int id)
         {
@@ -83,8 +121,16 @@ namespace HospitalManagementSystem.Controllers
             return Ok(Locations);
 
         }
-
-        // GET: api/LocationData/ListLocationsNotHavingThisService
+        /// <summary>
+        /// Gathers information about all location which is not related to a particular service ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="id">Service ID.</param>
+        /// <example>
+        // GET: api/LocationData/ListLocationsNotHavingThisService/3
+        /// </example>
         [HttpGet]
         public IHttpActionResult ListLocationsNotHavingThisService(int id)
         {
@@ -97,8 +143,17 @@ namespace HospitalManagementSystem.Controllers
 
         }
 
-
-
+        /// <summary>
+        /// Gathers information about department which is connected with particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="locationid">Location ID.</param>
+        /// <param name="departmentid">Department ID.</param>
+        /// <example>
+        // GET: api/LocationData/AssociateDepartmentWithLocation/locationid/departmentid
+        /// </example>
         [HttpPost]
         [Route("api/LocationData/AssociateDepartmentWithLocation/{locationid}/{departmentid}")]
         public IHttpActionResult AssociateDepartmentWithLocation(int locationid, int departmentid)
@@ -112,10 +167,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input department id is: " + locationid);
-            Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
-            Debug.WriteLine("input location id is: " + departmentid);
-            Debug.WriteLine("selected location name is: " + SelectedDepartment.DepartmentName);
+            //Debug.WriteLine("input department id is: " + locationid);
+            //Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input location id is: " + departmentid);
+            //Debug.WriteLine("selected location name is: " + SelectedDepartment.DepartmentName);
 
 
 
@@ -125,7 +180,17 @@ namespace HospitalManagementSystem.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Gathers information about department which is not connected with particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="locationid">Location ID.</param>
+        /// <param name="departmentid">Department ID.</param>
+        /// <example>
+        // GET: api/LocationData/UnAssociateDepartmentWithLocation/locationid/departmentid
+        /// </example>
         [HttpPost]
         [Route("api/LocationData/UnAssociateDepartmentWithLocation/{locationid}/{departmentid}")]
         public IHttpActionResult UnAssociateDepartmentWithLocation(int locationid, int departmentid)
@@ -139,10 +204,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input department id is: " + locationid);
-            Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
-            Debug.WriteLine("input location id is: " + departmentid);
-            Debug.WriteLine("selected location name is: " + SelectedDepartment.DepartmentName);
+            //Debug.WriteLine("input department id is: " + locationid);
+            //Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input location id is: " + departmentid);
+            //Debug.WriteLine("selected location name is: " + SelectedDepartment.DepartmentName);
 
 
             SelectedLocation.Departments.Remove(SelectedDepartment);
@@ -152,7 +217,17 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-
+        /// <summary>
+        /// Gathers information about service which is connected with particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="locationid">Location ID.</param>
+        /// <param name="serviceid">Service ID.</param>
+        /// <example>
+        // GET: api/LocationData/AssociateServiceWithLocation/locationid/departmentid
+        /// </example>
         [HttpPost]
         [Route("api/LocationData/AssociateServiceWithLocation/{locationid}/{serviceid}")]
         public IHttpActionResult AssociateServiceWithLocation(int locationid, int serviceid)
@@ -166,10 +241,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input department id is: " + locationid);
-            Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
-            Debug.WriteLine("input location id is: " + serviceid);
-            Debug.WriteLine("selected location name is: " + SelectedService.ServiceName);
+            //Debug.WriteLine("input department id is: " + locationid);
+            //Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input location id is: " + serviceid);
+            //Debug.WriteLine("selected location name is: " + SelectedService.ServiceName);
 
 
 
@@ -179,7 +254,17 @@ namespace HospitalManagementSystem.Controllers
             return Ok();
         }
 
-
+        /// <summary>
+        /// Gathers information about service which is not connected with particular location
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// </returns>
+        /// <param name="locationid">Location ID.</param>
+        /// <param name="serviceid">Service ID.</param>
+        /// <example>
+        // GET: api/LocationData/UnAssociateServiceWithLocation/locationid/servceid
+        /// </example>
         [HttpPost]
         [Route("api/LocationData/UnAssociateServiceWithLocation/{locationid}/{serviceid}")]
         public IHttpActionResult UnAssociateServiceWithLocation(int locationid, int serviceid)
@@ -193,10 +278,10 @@ namespace HospitalManagementSystem.Controllers
                 return NotFound();
             }
 
-            Debug.WriteLine("input department id is: " + locationid);
-            Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
-            Debug.WriteLine("input location id is: " + serviceid);
-            Debug.WriteLine("selected location name is: " + SelectedService.ServiceName);
+            //Debug.WriteLine("input department id is: " + locationid);
+            //Debug.WriteLine("selected department name is: " + SelectedLocation.LocationName);
+            //Debug.WriteLine("input location id is: " + serviceid);
+            //Debug.WriteLine("selected location name is: " + SelectedService.ServiceName);
 
 
             SelectedLocation.Services.Remove(SelectedService);
@@ -206,9 +291,19 @@ namespace HospitalManagementSystem.Controllers
         }
 
 
-
-
+        /// <summary>
+        /// Returns all details of particular location in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: An location in the system matching up to the location ID primary key
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <param name="id">The primary key of the location</param>
+        /// <example>
         // GET: api/LocationData/FindLocation/5
+        /// </example>
         [ResponseType(typeof(Location))]
         [HttpGet]
         public IHttpActionResult FindLocation(int id)
@@ -222,7 +317,22 @@ namespace HospitalManagementSystem.Controllers
             return Ok(location);
         }
 
+        /// <summary>
+        /// Updates a particular location in the system with POST Data input
+        /// </summary>
+        /// <param name="id">Represents the location ID primary key</param>
+        /// <param name="location">JSON FORM DATA of an location</param>
+        /// <returns>
+        /// HEADER: 204 (Success, No Content Response)
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// or
+        /// HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
         // POST: api/LocationData/UpdateLocation/5
+        /// FORM DATA: Location JSON Object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateLocation(int id, Location location)
@@ -258,7 +368,20 @@ namespace HospitalManagementSystem.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /// <summary>
+        /// Adds an location to the system
+        /// </summary>
+        /// <param name="location">JSON FORM DATA of an location</param>
+        /// <returns>
+        /// HEADER: 201 (Created)
+        /// CONTENT: Location ID, Location Data
+        /// or
+        /// HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
         // POST: api/LocationData/AddLocation
+        /// FORM DATA: Location JSON Object
+        /// </example>
         [ResponseType(typeof(Location))]
         [HttpPost]
         public IHttpActionResult AddLocation(Location location)
@@ -273,8 +396,19 @@ namespace HospitalManagementSystem.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = location.LocationId }, location);
         }
-
+        /// <summary>
+        /// Deletes an location from the system by it's ID.
+        /// </summary>
+        /// <param name="id">The primary key of the location</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
         // POST: api/LocationData/DeleteLocation/5
+        /// FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Location))]
         [HttpPost]
         public IHttpActionResult DeleteLocation(int id)
