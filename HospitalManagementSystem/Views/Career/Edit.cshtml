@@ -1,6 +1,4 @@
-﻿
-
-@model HospitalManagementSystem.Models.CareerDto
+﻿@model HospitalManagementSystem.Models.ViewModels.UpdateCareer
 @{
     ViewBag.Title = "Edit";
 }
@@ -8,34 +6,53 @@
 <h2>Edit</h2>
 
 
-<form action="/Career/Update/@Model.CareerId" method="POST">
+<form action="/Career/Update/@Model.SelectedCareer.CareerId" method="POST">
     <div>
-        <label>CareerId:</label>
-        <input type="number" name="CareerId" value="@Model.CareerId" />
+        CareerId:@Model.SelectedCareer.CareerId
+    </div>
+    <div>
+        <input type="hidden" name="careerid" value="@Model.SelectedCareer.CareerId" />
+       
     </div>
     <div>
         <label>Job Name:</label>
-        <input type="text" name="JobName" value="@Model.JobName" />
+        <input type="text" name="JobName" value="@Model.SelectedCareer.JobName" />
 
     </div>
+
     <div>
         <label>Job Id:</label>
-        <input type="number" name="JobId" value="@Model.JobId" />
+        <input type="number" name="JobId" value="@Model.SelectedCareer.JobId" />
 
     </div>
     <div>
         <label>Job Description:</label>
-        <input type="text" name="JobDescription" value="@Model.JobDescription" />
+        <input type="text" name="JobDescription" value="@Model.SelectedCareer.JobDescription" />
 
     </div>
     <div>
         <label>Department Name:</label>
-        <input type="text" name="DepartmentId" value="@Model.DepartmentId" />
+        <select name="DepartmentID">
+            @foreach (var department in Model.DepartmentOptions)
+            {
+                <option value="@department.DepartmentId" )>
+                    @if (department.DepartmentId == Model.SelectedCareer.DepartmentId)
+                    {<text></text>}@department.DepartmentName
+                </option>
+            }
+        </select>
     </div>
-  
     <div>
         <label>Location Name:</label>
-        <input type="text" name="LocationId" value="@Model.LocationId" />
+        <select name="LocationId">
+            @foreach (var location in Model.LocationOptions)
+            {
+                <option value="@location.LocationId" )>
+                    @if (location.LocationId == Model.SelectedCareer.LocationId)
+                    {<text></text>}@location.LocationName
+                </option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" name="Update Career" />

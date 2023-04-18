@@ -135,16 +135,32 @@ namespace HospitalManagementSystem.Controllers
         // GET: Career/Edit/5
         public ActionResult Edit(int id)
         {
+            UpdateCareer ViewModel = new UpdateCareer();
 
             //the existing career information
             string url = "findcareer/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             CareerDto SelectedCareer = response.Content.ReadAsAsync<CareerDto>().Result;
 
-            return View(SelectedCareer);
+            string url2 = "https://localhost:44316/api/departmentdata/listdepartments";
+            response = client.GetAsync(url2).Result;
+            IEnumerable<DepartmentDto> DepartmentOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+
+            string url1 = "https://localhost:44316/api/locationdata/listlocations";
+            response = client.GetAsync(url1).Result;
+            IEnumerable<LocationDto> LocationOptions = response.Content.ReadAsAsync<IEnumerable<LocationDto>>().Result;
+
+
+
+            ViewModel.SelectedCareer = SelectedCareer;
+            ViewModel.DepartmentOptions = DepartmentOptions;
+            ViewModel.LocationOptions = LocationOptions;
+
+
+            return View(ViewModel);
         }
 
-        // POST: Career/Edit/5
+        // POST: Career/Update/5
         [HttpPost]
         public ActionResult Update(int id, Career career)
         {
