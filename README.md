@@ -1,13 +1,17 @@
 # HospitalManagementSystem
 The first part of our Hospital Management System. This features the use of Code-First Migrations to create our database, and WebAPI and LINQ to perform CRUD operations.
+
 # Scope
  ### contributed by Madiha Umair
-  * Manage Locations, Departments information 
+ * Manage Locations, Departments information 
  * Manage Locations and associations between Locations and Departments
+ * Location and Deparment Pagination
+ * Try to work with Authentication(AS Admin); but Not letting us to any activity so we have to end up removing.
 
  ### contributed by Manali Patel
-  * Manage Careers, Service information
+ * Manage Careers, Service information
  * Manage Services and associations between Locations and Services
+ * service pagination
 
  ### contributed by Udip Mandora
   * Manage News, Donation information
