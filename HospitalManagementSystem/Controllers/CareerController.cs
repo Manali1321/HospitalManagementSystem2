@@ -1,4 +1,5 @@
 ﻿using HospitalManagementSystem.Models;
+using HospitalManagementSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,6 +51,7 @@ namespace HospitalManagementSystem.Controllers
         {
             //objective: communicate with our career data api to retrive one career
             //curl: https://localhost:44316/api/careerdata/findcareer/{id}
+            CareerDetails ViewModel = new CareerDetails();
 
             string url = "findcareer/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -63,8 +65,9 @@ namespace HospitalManagementSystem.Controllers
             //Debug.WriteLine(" Career recieved:");
             // Debug.WriteLine(SelectedCareer.CareerName);
 
+            ViewModel.SelectedCareer= SelectedCareer;
 
-            return View(SelectedCareer);
+            return View(ViewModel);
         }
 
         public ActionResult Error()
@@ -116,7 +119,7 @@ namespace HospitalManagementSystem.Controllers
             //the existing career information
             string url = "findcareer/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            Career SelectedCareer = response.Content.ReadAsAsync<Career>().Result;
+            CareerDto SelectedCareer = response.Content.ReadAsAsync<CareerDto>().Result;
 
             return View(SelectedCareer);
         }

@@ -39,6 +39,7 @@ namespace HospitalManagementSystem.Controllers
             return CareerDtos;
         }
 
+
         // GET: api/CareerData/FindCareer/5
         [ResponseType(typeof(Career))]
         [HttpGet]
