@@ -1,4 +1,4 @@
-﻿
+﻿@model HospitalManagementSystem.Models.ViewModels.AddCareers
 
 @{
     ViewBag.Title = "Create";
@@ -23,8 +23,24 @@
         <input type="number" name="DepartmentId" />
     </div>
     <div>
-        <label> Location Id:</label>
-        <input type="number" name="LocationId" />
+        <label>DepartmentId:</label>
+        <select name="DepartmentId">
+            @foreach (var department in @Model.DepartmentOptions)
+            {
+                <option value="@department.DepartmentId">@department.DepartmentName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <label>LocationId:</label>
+        <select name="LocationId">
+            @foreach (var location in @Model.LocationOptions)
+            {
+                <option value="@location.LocationId">@location.LocationName</option>
+
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Career" />

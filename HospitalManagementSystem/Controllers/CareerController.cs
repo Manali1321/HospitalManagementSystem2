@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
+
+
 namespace HospitalManagementSystem.Controllers
 {
     public class CareerController : Controller
@@ -78,7 +80,22 @@ namespace HospitalManagementSystem.Controllers
         // GET: Career/New
         public ActionResult New()
         {
-            return View();
+            string url = "departmentdata/listdepartments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<DepartmentDto> DepartmentOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentDto>>().Result;
+
+
+            string url1 = "locationdata/listlocations";
+            HttpResponseMessage response1 = client.GetAsync(url1).Result;
+            IEnumerable<LocationDto> LocationOptions = response1.Content.ReadAsAsync<IEnumerable<LocationDto>>().Result;
+
+
+            var viewModel = new AddCareers
+            {
+                DepartmentOptions = DepartmentOptions,
+                LocationOptions = LocationOptions
+            };
+            return View(viewModel);
         }
 
         // POST: Career/Create

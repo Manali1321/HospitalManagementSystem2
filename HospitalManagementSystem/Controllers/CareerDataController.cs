@@ -31,8 +31,8 @@ namespace HospitalManagementSystem.Controllers
                 JobName = c.JobName,
                 JobId = c.JobId,
                 JobDescription = c.JobDescription,
-                DepartmentName = c.Department.DepartmentName,
-                LocationName = c.Location.LocationName,
+                DepartmentId = c.Department.DepartmentId,
+                LocationId = c.Location.LocationId,
 
             }));
 
@@ -52,8 +52,8 @@ namespace HospitalManagementSystem.Controllers
                 JobName = Career.JobName,
                 JobId = Career.JobId,
                 JobDescription = Career.JobDescription,
-                DepartmentName = Career.Department.DepartmentName,
-                LocationName = Career.Location.LocationName
+                DepartmentId = Career.Department.DepartmentId,
+                LocationId = Career.Location.LocationId
 
             };
             if (Career == null)

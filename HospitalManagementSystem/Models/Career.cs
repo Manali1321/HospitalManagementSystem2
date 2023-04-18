@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace HospitalManagementSystem.Models
 {
     public class Career
     {
+        [Key]
         //internal string LocationName;
         public int CareerId { get; set; }
         public string JobName { get; set; }
@@ -37,8 +39,8 @@ namespace HospitalManagementSystem.Models
 
             public string JobDescription { get; set; }
 
-            public string DepartmentName { get; set; }
+            public int DepartmentId { get; set; }
 
-             public string LocationName { get; set; }
+            public int LocationId { get; set; }
     }
     }
