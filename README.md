@@ -3,15 +3,15 @@ The first part of our Hospital Management System. This features the use of Code-
 # Scope
  ### contributed by Madiha Umair
   * Manage Locations, Departments information 
+ * Manage Locations and associations between Locations and Departments
 
  ### contributed by Manali Patel
   * Manage Careers, Service information
+ * Manage Services and associations between Locations and Services
 
  ### contributed by Udip Mandora
   * Manage News, Donation information
 
- * Manage Locations and associations between Locations and Departments
- * Manage Services and associations between Locations and Services
 # Running this project
 * Project > HospitalManagementSystem Properties > Change target framework to 4.7.1 -> Change back to 4.7.2
 * Make sure there is an App_Data folder in the project (Right click solution > View in File Explorer)
