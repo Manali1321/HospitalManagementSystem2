@@ -33,7 +33,7 @@ namespace HospitalManagementSystem.Controllers
                 JobDescription = c.JobDescription,
                 DepartmentName = c.Department.DepartmentName,
                 LocationName = c.Location.LocationName,
-                
+
             }));
 
             return CareerDtos;

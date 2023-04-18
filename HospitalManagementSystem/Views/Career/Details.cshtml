@@ -1,4 +1,4 @@
-﻿@model HospitalManagementSystem.Models.CareerDto
+﻿@model HospitalManagementSystem.Models.ViewModels.CareerDetails
 @{
     ViewBag.Title = "Details";
 }
@@ -10,12 +10,13 @@
 
 <br />
 
-<div>Job Name: @Model.JobName</div>
-<div>Job Id: @Model.JobId</div>
-<div>Job Description: @Model.JobDescription</div>
-<div>Department Name: @Model.DepartmentName</div>
-<div>Location Name: @Model.LocationName</div>
+<div>Job Name: @Model.SelectedCareer.JobName</div>
+<div>Job Id: @Model.SelectedCareer.JobId</div>
+<div>Job Description: @Model.SelectedCareer.JobDescription</div>
+<div>Department Name: @Model.SelectedCareer.DepartmentName</div>
+<div>Location Name: @Model.SelectedCareer.LocationName</div>
 
 <br />
 
-<h3><a href="/Career/DeleteConfirm/@Model.CareerId">DELETE</a></h3>
+<h3><a href="/Career/DeleteConfirm/@Model.SelectedCareer.CareerId">DELETE</a></h3>
+<h3><a href="/Career/Edit/@Model.SelectedCareer.CareerId">UPDATE</a></h3>
