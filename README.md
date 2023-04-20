@@ -3,10 +3,16 @@ The first part of our Hospital Management System. This features the use of Code-
 
 # Scope
  ### contributed by Madiha Umair
- * Manage Locations, Departments information 
- * Manage Locations and associations between Locations and Departments
+  ## MVP
+ * Manage Locations, Departments information ,all CRUD functinality.
+  ## Addition To MVP
+ * Manage Locations and associations between Locations and Departments.
+ * Manage Locations and associations between Locations and Service.
  * Location and Deparment Pagination
- * Try to work with Authentication(AS Admin); but Not letting us to any activity so we have to end up removing.
+ * Documentation
+ * Read Me
+ * Front-End
+ * Work with Authentication(AS Admin); but was conflicting with other tables of group memebers so i have to remove that part.
 
  ### contributed by Manali Patel
  * Manage Careers, Service information
