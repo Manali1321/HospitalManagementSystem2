@@ -18,6 +18,17 @@ namespace HospitalManagementSystem.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/DoctorData/ListDoctors
+
+        /// <summary>
+        /// List all Doctors available in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: List of Doctors in the system.
+        /// </returns>
+        /// <example>
+          /// GET: api/DoctorData/ListDoctors
+        /// </example>
         [HttpGet]
         public IEnumerable<DoctorDto> ListDoctors()
         {
@@ -38,7 +49,18 @@ namespace HospitalManagementSystem.Controllers
             return DoctorDtos;
         }
 
-        // GET: api/DoctorData/FindDoctor/5
+   
+
+        /// <summary>
+        /// Find Doctor in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Find doctor in the system.
+        /// </returns>
+        /// <example>
+        /// GET: api/DoctorData/FindDoctor/5
+        /// </example>    
         [ResponseType(typeof(Doctor))]
         [HttpGet]
         public IHttpActionResult FindDoctor(int id)
@@ -64,6 +86,17 @@ namespace HospitalManagementSystem.Controllers
         }
 
         // POST: api/DoctorData/UpdateDoctor/5
+
+        /// <summary>
+        /// Update Doctor in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Update  in the Doctor system.
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/UpdateDoctor/5
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateDoctor(int id, Doctor doctor)
@@ -99,7 +132,16 @@ namespace HospitalManagementSystem.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DoctorData/AddDoctor
+        /// <summary>
+        /// Add Doctor in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Add Dcotor in the system.
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/AddDoctor
+        /// </example>
         [ResponseType(typeof(Doctor))]
         [HttpPost]
         public IHttpActionResult AddDoctor(Doctor doctor)
@@ -115,7 +157,19 @@ namespace HospitalManagementSystem.Controllers
             return CreatedAtRoute("DefaultApi", new { id = doctor.DoctorId }, doctor);
         }
 
-        // POST: api/DoctorData/DeleteDoctor/5
+
+        /// <summary>
+        /// Delete a Doctor in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Delete Doctor in the system.
+        /// </returns>
+        /// <example>
+        /// POST: api/DoctorData/DeleteDoctor/5
+        /// </example>
+
+    
         [ResponseType(typeof(Doctor))]
         [HttpPost]
         public IHttpActionResult DeleteDoctor(int id)

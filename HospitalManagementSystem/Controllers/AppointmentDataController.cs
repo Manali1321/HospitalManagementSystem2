@@ -15,7 +15,18 @@ namespace HospitalManagementSystem.Controllers
     public class AppointmentDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: api/AppointmentData/ListAppointments
+
+
+        /// <summary>
+        /// List all Appointments available in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: List of appointments in the system.
+        /// </returns>
+        /// <example>
+       /// GET: api/AppointmentData/ListAppointments
+        /// </example>
         [HttpGet]
         public IEnumerable<AppointmentDto> ListAppointments()
         {
@@ -34,7 +45,16 @@ namespace HospitalManagementSystem.Controllers
             return AppointmentDtos;
         }
 
-        // GET: api/AppointmentData/FindAppointment/5
+        /// <summary>
+        /// Find Appointment in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Find appointment in the system.
+        /// </returns>
+        /// <example>
+        ///GET: api/AppointmentData/FindAppointment/5
+        /// </example>     
         [ResponseType(typeof(Appointment))]
         [HttpGet]
         public IHttpActionResult FindAppointment(int id)
@@ -56,7 +76,17 @@ namespace HospitalManagementSystem.Controllers
             return Ok(AppointmentDto);
         }
 
-        // POST: api/AppointmentData/UpdateDoctor/5
+        /// <summary>
+        /// Update Appointment in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Update Appointment in the system.
+        /// </returns>
+        /// <example>
+        /// POST: api/AppointmentData/UpdateDoctor/5
+        /// </example>
+        /// 
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateAppointment(int id, Appointment appointment)
@@ -92,7 +122,17 @@ namespace HospitalManagementSystem.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/AppointmentData/AddAppointment
+        /// <summary>
+        /// Add Appointment in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Add Appointment in the system.
+        /// </returns>
+        /// <example>
+        /// POST: api/AppointmentData/AddAppointment
+        /// </example>
+
         [ResponseType(typeof(Appointment))]
         [HttpPost]
 
@@ -109,7 +149,18 @@ namespace HospitalManagementSystem.Controllers
             return CreatedAtRoute("DefaultApi", new { id = appointment.AppointmentId }, appointment);
         }
 
-        // POST: api/AppointmentData/DeleteAppointment/5
+        
+
+        /// <summary>
+        /// Delete Appointment in the system.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: Delete Appointment in the system.
+        /// </returns>
+        /// <example>
+        /// POST: api/AppointmentData/DeleteAppointment/5
+        /// </example>
         [ResponseType(typeof(Appointment))]
         [HttpPost]
         public IHttpActionResult DeleteAppointment(int id)
