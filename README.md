@@ -21,6 +21,12 @@ The first part of our Hospital Management System. This features the use of Code-
 
  ### contributed by Udip Mandora
   * Manage News, Donation information
+  
+ ### contributed by Navdeep Kaur
+  - Manage Doctors
+  - Manage Appointments
+  - Asssociation between Doctors and Departments(facing issues)
+  - Front End
 
 # Running this project
 * Project > HospitalManagementSystem Properties > Change target framework to 4.7.1 -> Change back to 4.7.2
