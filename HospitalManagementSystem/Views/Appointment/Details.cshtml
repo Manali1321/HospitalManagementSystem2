@@ -1,0 +1,22 @@
+﻿
+
+
+@model HospitalManagementSystem.Models.AppointmentDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Show Appointment</h2>
+
+
+<h3><a href="/Appointment/List">Go back to list</a></h3>
+
+<br />
+
+<div>Patient Name: @Model.PatientName</div>
+<div>Consulting Hour: @Model.ConsultingHours</div>
+<div>Doctor Name: @Model.DoctorFName @Model.DoctorLName</div>
+<br />
+
+<h3><a href="/Appointment/DeleteConfirm/@Model.AppointmentId">DELETE</a></h3>
+<h3><a href="/Appointment/Edit/@Model.AppointmentId">UPDATE</a></h3>

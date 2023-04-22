@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<HospitalManagementSystem.Models.AppointmentDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+<div style=" margin-top: 30px;">
+    <a style="border: 1px solid black; margin: 15px; padding: 15px; text-decoration: none; text-align: center; background-color: #47d147; color: black; " href="/Appointment/New">Add New an Appointment</a>
+</div>
+
+@foreach (var app in Model)
+{
+
+    <h2><a href="/Appointment/Details/@app.AppointmentId">@app.PatientName</a></h2>
+    <div>Consulting Time: @app.ConsultingHours</div>
+    <div>Doctor Name: @app.DoctorFName @app.DoctorLName</div>
+
+
+}
+

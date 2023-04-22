@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Department>
+
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add Doctor</h2>
+
+<form action="/Doctor/Create" method="POST">
+    <div>
+        <label>First Name:</label>
+        <input type="text" name="DoctorFName" />
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" name="DoctorLName" />
+    </div>
+    <div>
+        <label>Speciality:</label>
+        <select name="Speciality">
+            <option value="Cardiology">Cardiology</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Gastroenterologist">Gastroenterologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Ophthalmologist">Ophthalmologist</option>
+        </select>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" name="Email" />
+    </div>
+    <div>
+        <label> Contact Number:</label>
+        <input type="text" name="ContactNumber" />
+    </div>
+    <div>
+        <label> Department:</label>
+        <select name="DepartmentId">
+            @foreach (var department in Model)
+            {
+                <option value="@department.DepartmentId">@department.DepartmentName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Doctor" />
+    </div>
+</form>
+
+

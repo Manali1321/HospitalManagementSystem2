@@ -1,0 +1,24 @@
+﻿@model HospitalManagementSystem.Models.DoctorDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Doctor Details</h2>
+
+
+<h3><a href="/Doctor/List">Go back to list</a></h3>
+
+<br />
+
+<div>First Name: @Model.DoctorFName</div>
+<div>Last Name: @Model.DoctorLName</div>
+<div>Speciality: @Model.Speciality</div>
+<div>Email: @Model.Email</div>
+<div>Contact Number: @Model.ContactNumber</div>
+<div>Department: @Model.DepartmentName</div>
+
+
+<br />
+
+<h3><a href="/Doctor/DeleteConfirm/@Model.DoctorId">DELETE</a></h3>
+<h3><a href="/Doctor/Edit/@Model.DoctorId">UPDATE</a></h3>

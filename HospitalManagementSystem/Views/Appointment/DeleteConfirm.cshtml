@@ -1,0 +1,26 @@
+﻿
+@model HospitalManagementSystem.Models.AppointmentDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<br />
+<h4>Are you sure you want to delete this Appointment?</h4>
+<br />
+
+<a href="/Appointment/List">Cancel</a>
+
+
+<br />
+
+<div>Patient Name: @Model.PatientName</div>
+<div>Consulting Hour: @Model.ConsultingHours</div>
+<div>Doctor Name: @Model.DoctorFName @Model.DoctorLName</div>
+<br />
+
+<form action="/Appointment/Delete/@Model.AppointmentId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

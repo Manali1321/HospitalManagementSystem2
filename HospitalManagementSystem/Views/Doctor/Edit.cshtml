@@ -1,0 +1,48 @@
+﻿@model HospitalManagementSystem.Models.ViewModels.DetailsDoctor
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Doctor</h2>
+
+<form action="/Doctor/Update/@Model.SelectedDoctor.DoctorId" method="POST">
+    <div>
+        <label>First Name:</label>
+        <input type="text" name="DoctorFName" value="@Model.SelectedDoctor.DoctorFName" />
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" name="DoctorLName" value="@Model.SelectedDoctor.DoctorLName" />
+    </div>
+    <div>
+        <label>Speciality:</label>
+        <select name="Speciality">
+            <option value="Cardiology">Cardiology</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Gastroenterologist">Gastroenterologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Ophthalmologist">Ophthalmologist</option>
+        </select>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" name="Email" value="@Model.SelectedDoctor.Email" />
+    </div>
+    <div>
+        <label> Contact Number:</label>
+        <input type="text" name="ContactNumber" value="@Model.SelectedDoctor.ContactNumber" />
+    </div>
+    <div>
+        <label> Department:</label>
+        <select name="DepartmentId">
+            @foreach (var department in Model.DepartmentList)
+            {
+                <option value="@department.DepartmentId">@department.DepartmentName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Career" />
+    </div>

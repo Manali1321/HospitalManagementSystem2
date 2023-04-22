@@ -50,7 +50,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -102,7 +101,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -182,10 +180,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\AppointmentDataController.cs" />
     <Compile Include="Controllers\CareerController.cs" />
     <Compile Include="Controllers\CareerDataController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\DepartmentDataController.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
+    <Compile Include="Controllers\DoctorDataController.cs" />
     <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\DonationsDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -235,20 +237,28 @@
     <Compile Include="Migrations\202304010059231_betterNews.designer.cs">
       <DependentUpon>202304010059231_betterNews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304220000159_database.cs" />
+    <Compile Include="Migrations\202304220000159_database.designer.cs">
+      <DependentUpon>202304220000159_database.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Career.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Donation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\ViewModels\AppointmentDetails.cs" />
     <Compile Include="Models\ViewModels\CareerDetails.cs" />
     <Compile Include="Models\ViewModels\AddCareers.cs" />
     <Compile Include="Models\ViewModels\DepartmentDetails.cs" />
     <Compile Include="Models\ViewModels\DepartmentList.cs" />
+    <Compile Include="Models\ViewModels\DetailsDoctor.cs" />
     <Compile Include="Models\ViewModels\LocationDetails.cs" />
     <Compile Include="Models\ViewModels\LocationList.cs" />
     <Compile Include="Models\ViewModels\ServiceDetails.cs" />
@@ -352,6 +362,18 @@
     <Content Include="Views\Donations\DeleteConfirm.cshtml" />
     <Content Include="Views\Donations\Edit.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Doctor\List.cshtml" />
+    <Content Include="Views\Doctor\New.cshtml" />
+    <Content Include="Views\Doctor\Error.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
+    <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Doctor\DeleteConfirm.cshtml" />
+    <Content Include="Views\Appointment\List.cshtml" />
+    <Content Include="Views\Appointment\New.cshtml" />
+    <Content Include="Views\Appointment\Error.cshtml" />
+    <Content Include="Views\Appointment\Edit.cshtml" />
+    <Content Include="Views\Appointment\Details.cshtml" />
+    <Content Include="Views\Appointment\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304010059231_betterNews.resx">
       <DependentUpon>202304010059231_betterNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304220000159_database.resx">
+      <DependentUpon>202304220000159_database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

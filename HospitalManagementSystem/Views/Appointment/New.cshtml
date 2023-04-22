@@ -1,0 +1,36 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.DoctorDto>
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Appointment</h2>
+
+<form action="/Appointment/Create" method="POST">
+    <div>
+        <label>Patient Name:</label>
+        <input type="text" name="PatientName" />
+    </div>
+    <div>
+        <label>Consulting Hours:</label>
+        <select name="ConsultingHours">
+            <option value="10am to 11am">10am to 11am</option>
+            <option value="12am to 1pm">12am to 1pm</option>
+            <option value="2pm to 3pm">2pm to 3pm</option>
+            <option value="4pm to 5pm">4pm to 5pm</option>
+        </select>
+    </div>
+    <div>
+        <label>Doctor:</label>
+        <select name="DoctorId">
+            @foreach (var doctor in Model)
+            {
+                <option value="@doctor.DoctorId">@doctor.DoctorFName @doctor.DoctorLName</option>
+
+            }
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Add Appointment" />
+    </div>
+</form>
